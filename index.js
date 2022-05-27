@@ -7,7 +7,7 @@ app.get('/', (req, res)=> {
 res.send('Hello Afrith! I am changed');
 });
 app.get('/manoj', (req, res)=> {
-    res.send('Hello Manoj!');
+    res.send('Hello Manoj! I am also changed');
     });
 
 app.post('/getIndexes', (req, res)=> {
