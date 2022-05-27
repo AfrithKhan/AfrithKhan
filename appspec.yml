@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/AfrithKhan
+    overwrite: true
+hooks:
+  AfterInstall:
+    - location: scripts/AfterInstallHook.sh
+      timeout: 300    
