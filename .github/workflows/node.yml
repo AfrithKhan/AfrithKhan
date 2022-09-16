@@ -16,18 +16,9 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
-        projectBaseDir: /var/www/AfrithKhan       
+        # projectBaseDir: /var/www/AfrithKhan       
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ed21c45cbc1a6448bc3c0e7fbd54d0e7dbafc123 #${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: http://13.212.124.22:9000/  #${{ secrets.SONAR_HOST_URL }}##
-
-  #       - name: SonarQube Scan
-  # uses: sonarsource/sonarqube-scan-action@master
-  # with:
-  #   projectBaseDir: app/src
-  #   args: >
-  #     -Dsonar.python.coverage.reportPaths=coverage.xml
-  #     -Dsonar.tests=tests/
-  #     -Dsonar.verbose=true
