@@ -1,22 +1,23 @@
-name: CI
-​on:
-    push:
-        branches: [ master ]
-    
+on:
+  # Trigger analysis when pushing in master or pull requests, and when creating
+  # a pull request. 
+  push:
+    branches:
+      - master
+  # pull_request:
+  #     types: [opened, synchronize, reopened]
+
+name: Main Workflow
 jobs:
-    deploy:
-        runs-on: self-hosted
-    
-    strategy: 
-        matrix:
-            node-version: [12.x]
-            
+  sonarqube:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-            node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run build --if-present
-      - run: npm test
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ed21c45cbc1a6448bc3c0e7fbd54d0e7dbafc123 #${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: http://13.212.124.22:9000  #${{ secrets.SONAR_HOST_URL }}
